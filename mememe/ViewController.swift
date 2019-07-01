@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var cancelBtn: UIToolbar!
     @IBOutlet weak var cameraBtn: UIToolbar!
     @IBOutlet weak var galleryBtn: UIToolbar!
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var bottomLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

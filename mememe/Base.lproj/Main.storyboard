@@ -81,10 +81,10 @@
                     </view>
                     <connections>
                         <outlet property="bottomLabel" destination="HtR-OK-TCU" id="dkg-bj-Bhu"/>
-                        <outlet property="cameraBtn" destination="ZHP-j9-Hcb" id="vIG-bR-dkg"/>
-                        <outlet property="cancelBtn" destination="B2J-bO-m40" id="fh9-a6-CBp"/>
-                        <outlet property="galleryBtn" destination="ZHP-j9-Hcb" id="KSE-ke-QAN"/>
-                        <outlet property="shareBtn" destination="B2J-bO-m40" id="aT1-IW-XFD"/>
+                        <outlet property="cameraBtn" destination="yIB-Bt-U3C" id="gFY-2c-fAG"/>
+                        <outlet property="cancelBtn" destination="Xv3-gX-hbR" id="LTd-6k-nZ4"/>
+                        <outlet property="galleryBtn" destination="VYj-n1-Cmh" id="2GS-o1-83j"/>
+                        <outlet property="shareBtn" destination="Kib-aC-P8p" id="C90-cS-NSW"/>
                         <outlet property="topLabel" destination="RtL-ib-jBr" id="0AZ-kr-Udv"/>
                     </connections>
                 </viewController>

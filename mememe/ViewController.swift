@@ -9,7 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var shareBtn: UIToolbar!
+    @IBOutlet weak var cancelBtn: UIToolbar!
+    @IBOutlet weak var cameraBtn: UIToolbar!
+    @IBOutlet weak var galleryBtn: UIToolbar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

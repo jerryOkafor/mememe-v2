@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    @IBOutlet weak var memeMeImageView: UIImageView!
     @IBOutlet weak var shareBtn: UIBarButtonItem!
     @IBOutlet weak var cancelBtn: UIBarButtonItem!
     @IBOutlet weak var cameraBtn: UIBarButtonItem!
@@ -59,7 +61,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("Image picked: \(info)")
+    
+        if let image  = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            memeMeImageView.image = image
+        }
         
         //dismiss the image picker
         self.dismiss(animated: true, completion: nil)

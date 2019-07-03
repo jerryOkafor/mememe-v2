@@ -94,12 +94,14 @@
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="tga-ap-d21" id="ZYX-dj-cvF"/>
+                        <outlet property="bottomToolBar" destination="ZHP-j9-Hcb" id="sCA-Za-ifw"/>
                         <outlet property="cameraBtn" destination="yIB-Bt-U3C" id="gFY-2c-fAG"/>
                         <outlet property="cancelBtn" destination="Xv3-gX-hbR" id="LTd-6k-nZ4"/>
                         <outlet property="galleryBtn" destination="VYj-n1-Cmh" id="2GS-o1-83j"/>
                         <outlet property="memeMeImageView" destination="dW4-Q3-iFy" id="13Y-Uf-BIA"/>
                         <outlet property="shareBtn" destination="Kib-aC-P8p" id="C90-cS-NSW"/>
                         <outlet property="topTextField" destination="uqb-ex-pH9" id="0PA-n2-cL6"/>
+                        <outlet property="topToolBar" destination="B2J-bO-m40" id="9e5-6R-7TZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

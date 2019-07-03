@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    
+    @IBOutlet weak var topToolBar: UIToolbar!
+    @IBOutlet weak var bottomToolBar: UIToolbar!
     @IBOutlet weak var memeMeImageView: UIImageView!
     @IBOutlet weak var shareBtn: UIBarButtonItem!
     @IBOutlet weak var cancelBtn: UIBarButtonItem!
@@ -36,10 +39,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         //dsiable camera button depending on source availability
         self.cameraBtn.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        
+        //temporalyy diable the meme share buttton untils an image is picked
+        shareBtn.isEnabled = false
     }
 
     @objc func shareMememe(){
-        print("Sharing Mememe")
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeMeImageView.image!, memedImage: self.generateMemedImage())
+        
+        //use UIActivityViewController and share the memeMe
+        let activityViewController = UIActivityViewController(activityItems: [meme.memedImage!], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view //so that iPads won't crash
+        
+        //exclude some activit types from the list
+//        activityViewController.excludedActivityTypes = [.airDrop,.postToFacebook]
+        
+        //preset the viewcontroller
+        self.present(activityViewController, animated: false, completion: nil)
     }
     
     @objc func openCamera(){
@@ -57,11 +73,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @objc func cancel(){
-        print("Cancel")
+        shareBtn.isEnabled = false
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     
+        shareBtn.isEnabled = true
+        
         if let image  = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             memeMeImageView.image = image
         }
@@ -74,9 +92,30 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print("Image picker cancelled")
         
+        shareBtn.isEnabled = false
+        
         //dismiss the image picker
         self.dismiss(animated: true, completion: nil)
     }
 
+    
+    func generateMemedImage() -> UIImage {
+        
+        // TODO: Hide toolbar and navbar
+        topToolBar.isHidden  = true
+        bottomToolBar.isHidden = true
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        // TODO: Show toolbar and navbar
+        topToolBar.isHidden  = false
+        bottomToolBar.isHidden = false
+        
+        return memedImage
+    }
 }
 

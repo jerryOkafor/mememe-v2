@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="impact.ttf">
+            <string>Impact</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -29,21 +34,9 @@
                                     <barButtonItem title="Cancel" id="Xv3-gX-hbR"/>
                                 </items>
                             </toolbar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_launcher" translatesAutoresizingMaskIntoConstraints="NO" id="dW4-Q3-iFy">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_launcher" translatesAutoresizingMaskIntoConstraints="NO" id="dW4-Q3-iFy">
                                 <rect key="frame" x="0.0" y="94" width="414" height="718"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RtL-ib-jBr">
-                                <rect key="frame" x="20" y="114" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtR-OK-TCU">
-                                <rect key="frame" x="20" y="771" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHP-j9-Hcb">
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <constraints>
@@ -57,35 +50,55 @@
                                     <barButtonItem systemItem="flexibleSpace" id="6hl-y8-XxI"/>
                                 </items>
                             </toolbar>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bottom" placeholder="BOTTOM TEXT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tga-ap-d21">
+                                <rect key="frame" x="20" y="742" width="374" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="hqD-qB-bLq"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" placeholder="TOP TEXT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uqb-ex-pH9">
+                                <rect key="frame" x="20" y="114" width="374" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="DWe-Sf-hvj"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="HtR-OK-TCU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="0Ko-2F-Ola"/>
-                            <constraint firstItem="RtL-ib-jBr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="591-Kc-UDN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tga-ap-d21" secondAttribute="trailing" constant="20" id="3zK-ff-Ifb"/>
                             <constraint firstItem="ZHP-j9-Hcb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5WN-jB-PcW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RtL-ib-jBr" secondAttribute="trailing" constant="20" id="60H-ix-oDn"/>
                             <constraint firstItem="B2J-bO-m40" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6kn-bc-e2h"/>
-                            <constraint firstItem="RtL-ib-jBr" firstAttribute="top" secondItem="B2J-bO-m40" secondAttribute="bottom" constant="20" id="8I0-oo-S5x"/>
                             <constraint firstItem="dW4-Q3-iFy" firstAttribute="top" secondItem="B2J-bO-m40" secondAttribute="bottom" id="BGJ-Di-6tl"/>
                             <constraint firstItem="B2J-bO-m40" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DBP-V0-lmv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HtR-OK-TCU" secondAttribute="trailing" constant="20" id="Hrc-y1-Z80"/>
                             <constraint firstItem="ZHP-j9-Hcb" firstAttribute="top" secondItem="dW4-Q3-iFy" secondAttribute="bottom" id="R5R-Ls-aWc"/>
                             <constraint firstItem="dW4-Q3-iFy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WeS-Mh-xCX"/>
-                            <constraint firstItem="ZHP-j9-Hcb" firstAttribute="top" secondItem="HtR-OK-TCU" secondAttribute="bottom" constant="20" id="aG8-zF-tDq"/>
+                            <constraint firstItem="tga-ap-d21" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Yye-7T-XhD"/>
                             <constraint firstItem="ZHP-j9-Hcb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="dPp-MP-Pe3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uqb-ex-pH9" secondAttribute="trailing" constant="20" id="eGP-kn-iUY"/>
+                            <constraint firstItem="ZHP-j9-Hcb" firstAttribute="top" secondItem="tga-ap-d21" secondAttribute="bottom" constant="20" id="eql-Q9-uNy"/>
+                            <constraint firstItem="uqb-ex-pH9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="fcr-xd-sv2"/>
                             <constraint firstItem="B2J-bO-m40" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hSv-Rm-s98"/>
                             <constraint firstItem="ZHP-j9-Hcb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hwf-5d-elp"/>
                             <constraint firstItem="dW4-Q3-iFy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hys-or-tq8"/>
+                            <constraint firstItem="uqb-ex-pH9" firstAttribute="top" secondItem="B2J-bO-m40" secondAttribute="bottom" constant="20" id="ua3-Xa-HJv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="bottomLabel" destination="HtR-OK-TCU" id="dkg-bj-Bhu"/>
+                        <outlet property="bottomTextField" destination="tga-ap-d21" id="ZYX-dj-cvF"/>
                         <outlet property="cameraBtn" destination="yIB-Bt-U3C" id="gFY-2c-fAG"/>
                         <outlet property="cancelBtn" destination="Xv3-gX-hbR" id="LTd-6k-nZ4"/>
                         <outlet property="galleryBtn" destination="VYj-n1-Cmh" id="2GS-o1-83j"/>
                         <outlet property="shareBtn" destination="Kib-aC-P8p" id="C90-cS-NSW"/>
-                        <outlet property="topLabel" destination="RtL-ib-jBr" id="0AZ-kr-Udv"/>
+                        <outlet property="topTextField" destination="uqb-ex-pH9" id="0PA-n2-cL6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

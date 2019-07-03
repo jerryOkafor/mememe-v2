@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var shareBtn: UIBarButtonItem!
     @IBOutlet weak var cancelBtn: UIBarButtonItem!
     @IBOutlet weak var cameraBtn: UIBarButtonItem!
     @IBOutlet weak var galleryBtn: UIBarButtonItem!
-    @IBOutlet weak var topLabel: UILabel!
-    @IBOutlet weak var bottomLabel: UILabel!
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,9 @@ class ViewController: UIViewController {
         
         //add action for cancel btn
         self.cancelBtn.action = #selector(ViewController.cancel)
+        
+        //dsiable camera button depending on source availability
+        self.cameraBtn.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
 
     @objc func shareMememe(){
@@ -38,15 +41,36 @@ class ViewController: UIViewController {
     }
     
     @objc func openCamera(){
-        print("Open Camera")
+         let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType  = .camera
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
     @objc func openPhotos(){
-        print("Open photos")
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType  = .photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
     @objc func cancel(){
         print("Cancel")
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("Image picked: \(info)")
+        
+        //dismiss the image picker
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("Image picker cancelled")
+        
+        //dismiss the image picker
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

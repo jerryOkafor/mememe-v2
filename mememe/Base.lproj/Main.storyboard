@@ -23,6 +23,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_launcher" translatesAutoresizingMaskIntoConstraints="NO" id="dW4-Q3-iFy">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2J-bO-m40">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <constraints>
@@ -34,9 +37,6 @@
                                     <barButtonItem title="Cancel" id="Xv3-gX-hbR"/>
                                 </items>
                             </toolbar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_launcher" translatesAutoresizingMaskIntoConstraints="NO" id="dW4-Q3-iFy">
-                                <rect key="frame" x="0.0" y="94" width="414" height="718"/>
-                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHP-j9-Hcb">
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <constraints>
@@ -50,7 +50,7 @@
                                     <barButtonItem systemItem="flexibleSpace" id="6hl-y8-XxI"/>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bottom" placeholder="BOTTOM TEXT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tga-ap-d21">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM TEXT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tga-ap-d21">
                                 <rect key="frame" x="20" y="742" width="374" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -58,9 +58,9 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" placeholder="TOP TEXT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uqb-ex-pH9">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP TEXT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uqb-ex-pH9">
                                 <rect key="frame" x="20" y="114" width="374" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -68,7 +68,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -76,9 +76,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tga-ap-d21" secondAttribute="trailing" constant="20" id="3zK-ff-Ifb"/>
                             <constraint firstItem="ZHP-j9-Hcb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5WN-jB-PcW"/>
                             <constraint firstItem="B2J-bO-m40" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6kn-bc-e2h"/>
-                            <constraint firstItem="dW4-Q3-iFy" firstAttribute="top" secondItem="B2J-bO-m40" secondAttribute="bottom" id="BGJ-Di-6tl"/>
+                            <constraint firstItem="dW4-Q3-iFy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="BGJ-Di-6tl"/>
                             <constraint firstItem="B2J-bO-m40" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DBP-V0-lmv"/>
-                            <constraint firstItem="ZHP-j9-Hcb" firstAttribute="top" secondItem="dW4-Q3-iFy" secondAttribute="bottom" id="R5R-Ls-aWc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dW4-Q3-iFy" secondAttribute="bottom" id="R5R-Ls-aWc"/>
                             <constraint firstItem="dW4-Q3-iFy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WeS-Mh-xCX"/>
                             <constraint firstItem="tga-ap-d21" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Yye-7T-XhD"/>
                             <constraint firstItem="ZHP-j9-Hcb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="dPp-MP-Pe3"/>

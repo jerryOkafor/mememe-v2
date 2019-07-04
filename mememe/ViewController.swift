@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
     
     
     @IBOutlet weak var topToolBar: UIToolbar!
@@ -21,9 +21,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
+    private var clearedTopTextField  = false
+     private var clearedBottomTextField  = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         //add action for share Button
         self.shareBtn.action = #selector(ViewController.shareMememe)
@@ -42,6 +44,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         //temporalyy diable the meme share buttton untils an image is picked
         shareBtn.isEnabled = false
+        
+        //set textFileds delegate
+        topTextField.delegate = self
+        bottomTextField.delegate = self
+        
+        //set text attrinute for the top and bottom textFields
+        let memeTextAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.strokeColor: UIColor.blue,
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "Impact", size: 40)!,
+            NSAttributedString.Key.strokeWidth:  1.0
+        ]
+        
+        topTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        
+        //set all textFields alignment to center
+        topTextField.textAlignment = NSTextAlignment.center
+        bottomTextField.textAlignment = NSTextAlignment.center
     }
 
     @objc func shareMememe(){
@@ -116,6 +137,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomToolBar.isHidden = false
         
         return memedImage
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if  !clearedTopTextField{
+            topTextField.text = ""
+            clearedTopTextField = true
+        }
+        
+        if  !clearedBottomTextField{
+            bottomTextField.text  = ""
+            clearedBottomTextField = true
+        }
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

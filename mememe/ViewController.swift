@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
     
@@ -22,7 +23,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var bottomTextField: UITextField!
     
     private var clearedTopTextField  = false
-     private var clearedBottomTextField  = false
+    private var clearedBottomTextField  = false
+    private var isEditingBottomTextField = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +65,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //set all textFields alignment to center
         topTextField.textAlignment = NSTextAlignment.center
         bottomTextField.textAlignment = NSTextAlignment.center
+        
+        //add tags to the textFields so that we can track
+        topTextField.tag = 0
+        bottomTextField.tag = 1
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.unsubscribeToKeyboardNotifications()
     }
 
     @objc func shareMememe(){
@@ -111,10 +127,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("Image picker cancelled")
-        
-        shareBtn.isEnabled = false
-        
         //dismiss the image picker
         self.dismiss(animated: true, completion: nil)
     }
@@ -139,6 +151,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return memedImage
     }
     
+    @objc func keyboardWillShow(_ notifications:Notification){
+        if isEditingBottomTextField{
+            self.view.frame.origin.y = -getKeyboardHeight(notifications)
+        }
+        
+    }
+    
+    @objc func keyboardWillHide(_ notifications:Notification){
+       self.view.frame.origin.y = 0
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         if  !clearedTopTextField{
@@ -151,11 +174,41 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             clearedBottomTextField = true
         }
         
+        if textField.tag == bottomTextField.tag{
+            isEditingBottomTextField = true
+        }else{
+            isEditingBottomTextField = false
+        }
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    
+    func subscribeToKeyboardNotifications(){
+        
+        //will show
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        //will hide
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func unsubscribeToKeyboardNotifications() {
+        //will show
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        //will hide
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func getKeyboardHeight(_ notifications:Notification)->CGFloat{
+        let userInfo = notifications.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.cgRectValue.height
     }
 }
 

@@ -6,7 +6,6 @@
 //  Copyright © 2019 Jerry. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct Meme {

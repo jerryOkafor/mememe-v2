@@ -51,6 +51,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         topTextField.delegate = self
         bottomTextField.delegate = self
         
+        //setup top and bottom textField
+        setupTextField(topTextField, tag: 0)
+        setupTextField(bottomTextField, tag: 0)
+    }
+    
+    private func setupTextField(_ textField:UITextField, tag:Int){
+        
         //set text attrinute for the top and bottom textFields
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
             .strokeColor: UIColor.blue,
@@ -59,16 +66,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             .strokeWidth:  1.0
         ]
         
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        
-        //set all textFields alignment to center
-        topTextField.textAlignment = NSTextAlignment.center
-        bottomTextField.textAlignment = NSTextAlignment.center
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = NSTextAlignment.center
         
         //add tags to the textFields so that we can track
-        topTextField.tag = 0
-        bottomTextField.tag = 1
+        textField.tag = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {

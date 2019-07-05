@@ -95,16 +95,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @objc func openCamera(){
-         let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType  = .camera
-        self.present(imagePicker, animated: true, completion: nil)
+         presentPickerViewController(.camera)
     }
     
     @objc func openPhotos(){
+        presentPickerViewController(.photoLibrary)
+    }
+    
+    
+    private func presentPickerViewController(_ sourceType : UIImagePickerController.SourceType){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType  = .photoLibrary
+        imagePicker.sourceType  = sourceType
         self.present(imagePicker, animated: true, completion: nil)
     }
     

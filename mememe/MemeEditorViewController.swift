@@ -53,15 +53,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         //setup top and bottom textField
         setupTextField(topTextField, tag: 0)
-        setupTextField(bottomTextField, tag: 0)
+        setupTextField(bottomTextField, tag: 1)
     }
     
     private func setupTextField(_ textField:UITextField, tag:Int){
         
         //set text attrinute for the top and bottom textFields
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
-            .strokeColor: UIColor.blue,
-            .foregroundColor: UIColor.black,
+            .strokeColor: UIColor.black,
+            .foregroundColor: UIColor.white,
             .font: UIFont(name: "Impact", size: 40)!,
             .strokeWidth:  1.0
         ]
@@ -70,7 +70,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textField.textAlignment = NSTextAlignment.center
         
         //add tags to the textFields so that we can track
-        textField.tag = 0
+        textField.tag = tag
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,11 +84,19 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
     @objc func shareMememe(){
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeMeImageView.image!, memedImage: self.generateMemedImage())
+        let memedImage = self.generateMemedImage()
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeMeImageView.image!, memedImage:memedImage)
         
         //use UIActivityViewController and share the memeMe
         let activityViewController = UIActivityViewController(activityItems: [meme.memedImage!], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view //so that iPads won't crash
+        
+        //only save the memed image when the activity view is completed.
+        activityViewController.completionWithItemsHandler = {(activity, completed, items, error ) in
+            if completed{
+                self.save(memedImage: memedImage)
+            }
+        }
         
         //preset the viewcontroller
         self.present(activityViewController, animated: false, completion: nil)
@@ -130,6 +138,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         //dismiss the image picker
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    func save(memedImage:UIImage){
+        //add save meme code here in v2.0
+        print("Saving memed image")
     }
 
     

@@ -90,9 +90,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let activityViewController = UIActivityViewController(activityItems: [meme.memedImage!], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view //so that iPads won't crash
         
-        //exclude some activit types from the list
-//        activityViewController.excludedActivityTypes = [.airDrop,.postToFacebook]
-        
         //preset the viewcontroller
         self.present(activityViewController, animated: false, completion: nil)
     }

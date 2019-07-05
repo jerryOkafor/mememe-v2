@@ -63,7 +63,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             .strokeColor: UIColor.black,
             .foregroundColor: UIColor.white,
             .font: UIFont(name: "Impact", size: 40)!,
-            .strokeWidth:  1.0
+            .strokeWidth:  -1.0
         ]
         
         textField.defaultTextAttributes = memeTextAttributes

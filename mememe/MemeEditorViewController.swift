@@ -53,10 +53,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         //set text attrinute for the top and bottom textFields
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.strokeColor: UIColor.blue,
-            NSAttributedString.Key.foregroundColor: UIColor.black,
-            NSAttributedString.Key.font: UIFont(name: "Impact", size: 40)!,
-            NSAttributedString.Key.strokeWidth:  1.0
+            .strokeColor: UIColor.blue,
+            .foregroundColor: UIColor.black,
+            .font: UIFont(name: "Impact", size: 40)!,
+            .strokeWidth:  1.0
         ]
         
         topTextField.defaultTextAttributes = memeTextAttributes

@@ -200,12 +200,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        if  !clearedTopTextField{
+        if  !clearedTopTextField && meme == nil{
             topTextField.text = ""
             clearedTopTextField = true
         }
         
-        if  !clearedBottomTextField{
+        if  !clearedBottomTextField  && meme == nil {
             bottomTextField.text  = ""
             clearedBottomTextField = true
         }

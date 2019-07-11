@@ -26,6 +26,8 @@ class MemeTableViewController: UITableViewController {
             target: self,
             action: #selector(addNewMeme(_:))
         )
+        
+        hidesBottomBarWhenPushed = true
 
     }
     
@@ -62,6 +64,11 @@ class MemeTableViewController: UITableViewController {
         cell.bottomLabel.text = memeItem.bottomText
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let meme = memes[indexPath.row]
+        MemeDetailViewController.launch(self, animated: true, meme: meme)
     }
 }
 

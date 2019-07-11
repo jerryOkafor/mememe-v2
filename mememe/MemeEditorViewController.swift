@@ -26,6 +26,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     private var clearedBottomTextField  = false
     private var isEditingBottomTextField = false
     
+    internal var meme:Meme?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,9 +46,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //dsiable camera button depending on source availability
         self.cameraBtn.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
-        //temporalyy diable the meme share buttton untils an image is picked
-        shareBtn.isEnabled = false
-        
         //set textFileds delegate
         topTextField.delegate = self
         bottomTextField.delegate = self
@@ -58,6 +57,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //make toolbar seamles with the view background
         self.topToolBar.setShadowImage(UIImage(), forToolbarPosition: .any)
 //        self.bottomToolBar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        
+        
+        //set the meme if we are in edit mode
+        if let meme = meme{
+            memeMeImageView.image = meme.originalImage
+            topTextField.text = meme.topText
+            bottomTextField.text = meme.bottomText
+        }else{
+            
+            //temporalyy diable the meme share buttton untils an image is picked
+            shareBtn.isEnabled = false
+        }
     }
     
 
@@ -234,6 +245,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let userInfo = notifications.userInfo
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.cgRectValue.height
+    }
+    
+    static func launch(_ caller:UIViewController,animated:Bool = true,meme:Meme?){
+        let vc =  UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: String(describing: MemeEditorViewController.self)) as! MemeEditorViewController
+        
+        vc.hidesBottomBarWhenPushed = true
+        vc.meme = meme
+        
+        caller.present(vc, animated: animated,completion: nil)
+
     }
 }
 

@@ -11,7 +11,7 @@ import UIKit
 class MemeCollectionViewController: UICollectionViewController {
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
-    var memes: [Meme]! {
+    private var memes: [Meme]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         return appDelegate.memes
@@ -45,8 +45,7 @@ class MemeCollectionViewController: UICollectionViewController {
     
     @objc
     private func addNewMeme(_ sender:UIBarButtonItem){
-        let vc =  UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: String(describing: MemeEditorViewController.self))
-        self.navigationController?.present(vc, animated: true,completion: nil)
+        MemeEditorViewController.launch(self, animated: true, meme: nil)
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

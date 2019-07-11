@@ -21,6 +21,7 @@ class MemeDetailViewController: UIViewController {
     static func launch(_ caller:UIViewController, animated:Bool,meme:Meme){
         let vc  = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: String(describing: self)) as! MemeDetailViewController
         vc.meme = meme
+        vc.hidesBottomBarWhenPushed = true
         caller.navigationController?.pushViewController(vc, animated: animated)
     }
 }

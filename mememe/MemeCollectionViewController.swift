@@ -35,8 +35,6 @@ class MemeCollectionViewController: UICollectionViewController {
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
-        
-         hidesBottomBarWhenPushed = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

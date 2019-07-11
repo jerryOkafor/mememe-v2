@@ -27,7 +27,6 @@ class MemeTableViewController: UITableViewController {
             action: #selector(addNewMeme(_:))
         )
         
-        hidesBottomBarWhenPushed = true
 
     }
     

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Foundation
+import CropViewController
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
     
@@ -16,6 +16,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var bottomToolBar: UIToolbar!
     @IBOutlet weak var memeMeImageView: UIImageView!
     @IBOutlet weak var shareBtn: UIBarButtonItem!
+    @IBOutlet weak var cropBtn: UIBarButtonItem!
     @IBOutlet weak var cancelBtn: UIBarButtonItem!
     @IBOutlet weak var cameraBtn: UIBarButtonItem!
     @IBOutlet weak var galleryBtn: UIBarButtonItem!
@@ -33,6 +34,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         //add action for share Button
         self.shareBtn.action = #selector(MemeEditorViewController.shareMememe)
+        
+        //add action for cropping
+        self.cropBtn.action = #selector(MemeEditorViewController.cropImage(_:))
         
         //add action for Camera btn
         self.cameraBtn.action = #selector(MemeEditorViewController.openCamera)
@@ -98,6 +102,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewWillDisappear(animated)
         self.unsubscribeToKeyboardNotifications()
     }
+    
 
     @objc func shareMememe(){
         let memedImage = self.generateMemedImage()
@@ -121,11 +126,24 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         self.present(activityViewController, animated: false, completion: nil)
     }
     
-    @objc func openCamera(){
+    
+    @objc
+    private func cropImage(_ sender:UIBarButtonItem){
+        if let image = memeMeImageView.image{
+            let cropViewController = CropViewController(image: image)
+            cropViewController.customAspectRatio = CGSize(width: 200, height: 400)
+            cropViewController.delegate = self
+            present(cropViewController, animated: true, completion: nil)
+        }
+        
+    }
+    @objc
+    private func openCamera(){
          presentPickerViewController(.camera)
     }
     
-    @objc func openPhotos(){
+    @objc
+    private func openPhotos(){
         presentPickerViewController(.photoLibrary)
     }
     
@@ -258,3 +276,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
 }
 
+
+//Extension for image cropping
+extension MemeEditorViewController : CropViewControllerDelegate{
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        
+        self.memeMeImageView.image  = image
+        
+        //dismiss
+        cropViewController.dismiss(animated: true, completion: nil)
+    }
+    
+}

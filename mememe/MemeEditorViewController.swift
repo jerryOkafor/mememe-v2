@@ -54,8 +54,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //setup top and bottom textField
         setupTextField(topTextField, tag: 0)
         setupTextField(bottomTextField, tag: 1)
+        
+        //make toolbar seamles with the view background
+        self.topToolBar.setShadowImage(UIImage(), forToolbarPosition: .any)
+//        self.bottomToolBar.setShadowImage(UIImage(), forToolbarPosition: .any)
     }
     
+
     private func setupTextField(_ textField:UITextField, tag:Int){
         
         //set text attrinute for the top and bottom textFields
@@ -94,7 +99,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //only save the memed image when the activity view is completed.
         activityViewController.completionWithItemsHandler = {(activity, completed, items, error ) in
             if completed{
-                self.save(memedImage: memedImage)
+                self.save(meme: meme)
             }
         }
         
@@ -119,7 +124,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @objc func cancel(){
-        shareBtn.isEnabled = false
+        self.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -142,9 +147,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     
     
-    func save(memedImage:UIImage){
+    func save(meme:Meme){
         //add save meme code here in v2.0
-        print("Saving memed image")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.memes.append(meme)
     }
 
     

@@ -99,7 +99,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //only save the memed image when the activity view is completed.
         activityViewController.completionWithItemsHandler = {(activity, completed, items, error ) in
             if completed{
+                print("Completed meme sharing")
                 self.save(meme: meme)
+                
+                self.dismiss(animated: true, completion: nil)
             }
         }
         

@@ -11,24 +11,15 @@ import UIKit
 class MemeTableViewController: UITableViewController {
     @IBOutlet weak var newMemeBtn: UIBarButtonItem!
     
-//    var memes: [Meme]! {
-//        let object = UIApplication.shared.delegate
-//        let appDelegate = object as! AppDelegate
-//        return appDelegate.memes
-//    }
-
-    var memes = [Meme]()
+    var memes: [Meme]! {
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        return appDelegate.memes
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-         self.memes.append(Meme(topText: "T##String?", bottomText: "T##String?", originalImage: UIImage(), memedImage: UIImage()))
         
-         self.memes.append(Meme(topText: "T##String?", bottomText: "T##String?", originalImage: UIImage(), memedImage: UIImage()))
-         self.memes.append(Meme(topText: "T##String?", bottomText: "T##String?", originalImage: UIImage(), memedImage: UIImage()))
-         self.memes.append(Meme(topText: "T##String?", bottomText: "T##String?", originalImage: UIImage(), memedImage: UIImage()))
-    
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "ic_plus"),
             style: .plain,
@@ -36,6 +27,11 @@ class MemeTableViewController: UITableViewController {
             action: #selector(addNewMeme(_:))
         )
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView?.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -61,23 +57,18 @@ class MemeTableViewController: UITableViewController {
         let cell  = tableView.dequeueReusableCell(withIdentifier: String(describing: MemeTableViewItem.self), for: indexPath) as! MemeTableViewItem
         
         let memeItem = memes[indexPath.row]
+        cell.memeImageView.image = memeItem.memedImage
+        cell.topLabel.text = memeItem.topText
+        cell.bottomLabel.text = memeItem.bottomText
         
         return cell
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 
 class MemeTableViewItem: UITableViewCell {
+    @IBOutlet weak var memeImageView: UIImageView!
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var bottomLabel: UILabel!
     
 }

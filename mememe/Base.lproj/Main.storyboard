@@ -133,6 +133,11 @@
                                         <constraint firstItem="Rww-M0-4KF" firstAttribute="leading" secondItem="Kkw-dk-pbJ" secondAttribute="trailing" constant="20" id="z4L-eW-aaC"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bottomLabel" destination="Rww-M0-4KF" id="wRr-PB-0Zs"/>
+                                    <outlet property="memeImageView" destination="Kkw-dk-pbJ" id="rad-Vx-jHJ"/>
+                                    <outlet property="topLabel" destination="1gb-Gk-VPI" id="eVY-K6-MEP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

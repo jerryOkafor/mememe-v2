@@ -1,0 +1,6 @@
+framework module Pods_mememeUITests {
+  umbrella header "Pods-mememeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

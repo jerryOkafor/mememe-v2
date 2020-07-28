@@ -13,7 +13,7 @@ Part 2 : Final version of the MemeMe App. Memes will appear in a tab view with t
 1. MVC - Model View Controller
 2. Delegate Pattern
 3. Interfaces and UI touch action events
-4. ViewControllers and Multi Veiw layout
+4. ViewControllers and MultiView Layout
 
 ## Requirements
 XCode >= 10.3
